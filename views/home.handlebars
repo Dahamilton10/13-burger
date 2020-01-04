@@ -1,0 +1,32 @@
+<div class="row">
+    {{#if result}}
+    <div class="col-md-6">
+        <ul>
+            {{#each result}}
+            {{#unless result.eaten_status}}
+            <li>
+                <p>{{this.id}}: {{this.burger_name}}</p>
+                <button type="submit" data="{{this.id}}">Eat it!</button>
+            </li>
+            {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+
+
+    {{!-- //////////////////////////////////////////////////////////////////////////////////// --}}
+
+    <div class="col-md-6">
+        <ul>
+            {{#each result}}
+            {{#if result.eaten_status}}
+            <li>
+                <p>{{this.id}}: {{this.burger_name}}</p>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+{{/if}}
