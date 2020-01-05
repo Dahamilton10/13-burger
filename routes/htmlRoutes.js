@@ -8,12 +8,29 @@ const connection = require('../db/dbConnection')
 // });
 
 // All other routes respond with the index.html file
-router.get("*", function(req, res) {
+router.get("/", function(req, res) {
   const query = "SELECT * FROM burgers"
+  console.log("htmlRoutes get /")
   connection.query(query, (err, result) => {
     if (err) throw err;
     res.render('home', {burgers: result});
   })
 });
+
+router.post("/", function(req, res) {
+  console.log(req.body);
+
+  const query = "SELECT * FROM burgers"
+  console.log("htmlRoutes post /");
+
+  connection.query("INSERT INTO burgers (burger_name) VALUES (?)", [req.body.burgerName], function(err, result) {
+    if (err) {
+      throw err;
+    }
+
+    res.redirect("/");
+  });
+});
+
 
 module.exports = router;

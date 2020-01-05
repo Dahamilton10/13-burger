@@ -8,15 +8,27 @@ const connection = require('../db/dbConnection')
 // instead of calling "router.USE(...)" we will be calling "router.get(..)", replacing "get" with whichever http verb is relevant (post, delete, etc.)
 router.get("/", function(req, res) {
   const query = "SELECT * FROM burgers"
+  console.log("apiRoutes get /");
   connection.query(query, (err, result) => {
     if (err) throw err;
-    res.render('home', result);
+    res.render('home', {burgers: result});
+  })
+});
+
+
+router.post("/", function(req, res) {
+  const query = "SELECT * FROM users"
+  console.log("apiRoutes post /");
+  connection.query(query, (err, result) => {
+    if (err) throw err;
+    res.render('home', {burgers: result});
   })
 });
 
 
 router.put("/", function(req, res) {
     const query = "SELECT * FROM users"
+    console.log("apiRoutes put /");
     connection.query(query, (err, result) => {
       if (err) throw err;
       res.render('home', {burgers: result});

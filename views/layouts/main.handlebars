@@ -16,11 +16,31 @@
 
     <div class="text-center">
         <h2 class="text-center">Add a Burger!</h2>
-        <form id="addBurger" class="button-size text-center">
-            <input type="textfield" name="burgername" placeholder="Burger Name..."></input>
-            <button type="submit">Save Burger!</button>
+        <form method="POST" id="addBurger" class="button-size text-center">
+            <input type="textfield" name="burgerName" placeholder="Burger Name..."></input>
+            <button type="submit" id="save-button">Save Burger!</button>
         </form>
     </div>
+
+<script type="javascript/text">
+
+$("#save-button").click(function(event) {
+    event.preventDefault();
+    alert("On click event");
+    console.log("on click event");
+    let newBurger = {
+        burgerName: $("#burgerName").val().trim(),
+        eaten_status: false
+    };
+
+    $.post("/", newBurger)
+        .then(function(data){
+            console.log(data);
+        });
+});
+
+</script>
+
 </body>
 
 </html>
