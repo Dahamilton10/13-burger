@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Employee Database UI</title>
+    <title>Burgers!</title>
     <script src="https://code.jquery.com/jquery.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,11 +22,10 @@
         </form>
     </div>
 
-<script type="javascript/text">
+    <script type="javascript/text">
 
 $("#save-button").click(function(event) {
     event.preventDefault();
-    alert("On click event");
     console.log("on click event");
     let newBurger = {
         burgerName: $("#burgerName").val().trim(),
@@ -38,6 +37,20 @@ $("#save-button").click(function(event) {
             console.log(data);
         });
 });
+
+$(".eat").click(function(event) {
+    event.preventDefault();
+    console.log("on click event eat");
+    let burgerUpdate = {
+        burgerID: this.id
+    };
+
+    $.put("/", burgerUpdate)
+        .then(function(data){
+            console.log(data);
+        })
+})
+
 
 </script>
 

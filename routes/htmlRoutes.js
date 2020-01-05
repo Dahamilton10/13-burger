@@ -19,11 +19,22 @@ router.get("/", function(req, res) {
 
 router.post("/", function(req, res) {
   console.log(req.body);
-
-  const query = "SELECT * FROM burgers"
   console.log("htmlRoutes post /");
 
   connection.query("INSERT INTO burgers (burger_name) VALUES (?)", [req.body.burgerName], function(err, result) {
+    if (err) {
+      throw err;
+    }
+
+    res.redirect("/");
+  });
+});
+
+router.put("/", function(req, res) {
+  console.log(req.body);
+  console.log("htmlRoutes put /");
+
+  connection.query("UPDATE burgers SET eaten_status = true WHERE id = (?)", [req.body.burgerID], function(err, result) {
     if (err) {
       throw err;
     }

@@ -3,10 +3,10 @@
     <div class="col-md-6">
         <ul>
             {{#each burgers}}
-            {{#unless burgers.eaten_status}}
+            {{#unless this.eaten_status}}
             <li>
                 <p>{{this.id}}: {{this.burger_name}}</p>
-                <button type="submit" data="{{this.id}}">Eat it!</button>
+                <button class="eat" type="submit" data="{{this.id}}">Eat it!</button>
             </li>
             {{/unless}}
             {{/each}}
@@ -19,7 +19,7 @@
     <div class="col-md-6">
         <ul>
             {{#each burgers}}
-            {{#if burgers.eaten_status}}
+            {{#if this.eaten_status}}
             <li>
                 <p>{{this.id}}: {{this.burger_name}}</p>
             </li>
