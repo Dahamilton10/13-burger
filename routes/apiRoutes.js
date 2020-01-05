@@ -19,7 +19,7 @@ router.put("/", function(req, res) {
     const query = "SELECT * FROM users"
     connection.query(query, (err, result) => {
       if (err) throw err;
-      res.render('home', result);
+      res.render('home', {burgers: result});
     })
   });
 
