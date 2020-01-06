@@ -30,9 +30,9 @@ router.post("/", function(req, res) {
   });
 });
 
-router.put("/", function(req, res) {
+router.post("/update", function(req, res) {
   console.log(req.body);
-  console.log("htmlRoutes put /");
+  console.log("htmlRoutes put /update");
 
   connection.query("UPDATE burgers SET eaten_status = true WHERE id = (?)", [req.body.burgerID], function(err, result) {
     if (err) {

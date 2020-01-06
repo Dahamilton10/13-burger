@@ -18,7 +18,7 @@
         <h2 class="text-center">Add a Burger!</h2>
         <form method="POST" id="addBurger" class="button-size text-center">
             <input type="textfield" name="burgerName" placeholder="Burger Name..."></input>
-            <button type="submit" id="save-button">Save Burger!</button>
+            <button id="save-button">Save Burger!</button>
         </form>
     </div>
 
@@ -38,19 +38,30 @@ $("#save-button").click(function(event) {
         });
 });
 
-$(".eat").click(function(event) {
-    event.preventDefault();
+$(document).ready(function() {
+
+$(document).on("click", ".eat", function(e) {
+    e.preventDefault();
+    {{log this}};
     console.log("on click event eat");
-    let burgerUpdate = {
+    $.ajax({
+    url : '/update',
+    type : 'POST',
+    data : {
         burgerID: this.id
-    };
+    },
+    success : function(data) {              
+        console.log('Data: '+ data);
+    },
+    error : function(request,error)
+    {
+        console.log("Request: "+JSON.stringify(request));
+    }
+});
 
-    $.put("/", burgerUpdate)
-        .then(function(data){
-            console.log(data);
-        })
-})
+});
 
+});
 
 </script>
 
