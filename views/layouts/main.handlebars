@@ -39,28 +39,28 @@ $("#save-button").click(function(event) {
 });
 
 $(document).ready(function() {
+  $(".updateBurger").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
-$(document).on("click", ".eat", function(e) {
-    e.preventDefault();
-    {{log this}};
-    console.log("on click event eat");
-    $.ajax({
-    url : '/update',
-    type : 'POST',
-    data : {
-        burgerID: this.id
-    },
-    success : function(data) {              
-        console.log('Data: '+ data);
-    },
-    error : function(request,error)
-    {
-        console.log("Request: "+JSON.stringify(request));
-    }
-});
 
-});
 
+    let updatedburger = {
+      burgerID: this.data("id");
+    };
+
+    // Send the POST request.
+    $.ajax("/update", {
+      type: "POST",
+      data: updatedburger
+    }).then(
+      function() {
+        console.log("updated id");
+        // Reload the page to get the updated list
+
+      }
+    );
+  });
 });
 
 </script>

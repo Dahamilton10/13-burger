@@ -6,7 +6,9 @@
             {{#unless this.eaten_status}}
             <li>
                 <p>{{this.id}}: {{this.burger_name}}</p>
-                <button class="eat" data-id="{{this.id}}">Eat it!</button>
+                <form class="button-size updateBurger">
+                <button class="eat" id="{{this.id}}" data-id="{{this.id}}">Eat it!</button>
+                </form>
             </li>
             {{/unless}}
             {{/each}}
